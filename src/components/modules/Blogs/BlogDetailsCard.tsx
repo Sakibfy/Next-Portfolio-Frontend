@@ -31,7 +31,7 @@ export default async function BlogDetailsCard({ blog }: { blog: any }) {
             )}
           </p>
           <p className="text-gray-500 text-sm">
-            {new Date(blog.createdAt).toLocaleDateString()} • {blog.views} views
+            {new Date(blog.createdAt).toLocaleDateString()}
           </p>
         </div>
       </div>
@@ -47,7 +47,7 @@ export default async function BlogDetailsCard({ blog }: { blog: any }) {
         </div>
       )}
 
-      <article className="prose prose-lg max-w-none">
+      <article className="prose prose-lg max-w-none mt-3">
         <p>{blog.content}</p>
       </article>
     </main>

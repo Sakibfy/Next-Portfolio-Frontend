@@ -1,15 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import BlogCard from "@/components/modules/Blogs/BlogCard";
 import Hero from "@/components/modules/Home/Hero";
 
 export default async function HomePage() {
 
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/post`)
-  console.log(res);
-
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/post`, {
+    next: {
+      revalidate: 30,
+    }
+  })
   const  posts  = await res.json();
-
-console.log(posts);
-
 
   return (
     <div>
