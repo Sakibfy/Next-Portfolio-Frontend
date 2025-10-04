@@ -19,7 +19,7 @@ const Navbar = () => {
 
         {/* Actions and Mobile Menu */}
         <div className="flex items-center gap-4 md:gap-6">
-          <Button className="rounded-full  px-5 py-2 text-sm bg-white text-black md:text-base">
+          <Button className="rounded-full  px-5 py-2 text-sm bg-white text-black md:text-base hover:text-white">
             <Link href="/login" className="block w-full text-center ">
               Login
             </Link>
