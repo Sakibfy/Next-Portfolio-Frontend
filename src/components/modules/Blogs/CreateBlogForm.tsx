@@ -100,24 +100,6 @@ export default function CreateBlogForm() {
           className="w-full rounded-md border px-3 py-2 focus:ring focus:ring-yellow-300 dark:bg-gray-800 dark:border-gray-700 dark:text-white"
         />
       </div>
-
-      {/* Author ID */}
-      <div>
-        <label
-          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-          htmlFor="authorId"
-        >
-          Author ID
-        </label>
-        <input
-          type="number"
-          id="authorId"
-          name="authorId"
-          placeholder=""
-          className="w-full rounded-md border px-3 py-2 focus:ring focus:ring-yellow-300 dark:bg-gray-800 dark:border-gray-700 dark:text-white"
-        />
-      </div>
-
       {/* Published */}
       <div>
         <p className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">

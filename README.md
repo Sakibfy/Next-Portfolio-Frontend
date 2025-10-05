@@ -1,36 +1,126 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+🚀 Next Portfolio Blog
 
-## Getting Started
+A modern full-stack portfolio blog application built with Next.js 14, TypeScript, Prisma, Express.js, and NextAuth.js — featuring Google & Credentials Authentication, secure middleware protection, dynamic blog management, and RESTful backend API integration.
 
-First, run the development server:
+🧠 Overview
 
-```bash
+This project is a Portfolio Blog Platform where users can:
+
+Sign in using Google or Email & Password
+
+Create, edit, and delete blog posts
+
+View published blogs on the frontend
+
+Manage blogs securely with protected routes
+
+ * Seamlessly integrate with a Node.js + Express backend via REST API
+
+* Use Prisma ORM for database management
+
+
+🛠️ Tech Stack
+
+| Layer              | Technology                                                    | Description                                     |
+| ------------------ | ------------------------------------------------------------- | ----------------------------------------------- |
+| **Frontend**       | [Next.js 14 (App Router)](https://nextjs.org/docs)            | Framework for React-based SSR/SSG frontend      |
+| **Backend**        | [Express.js](https://expressjs.com/)                          | RESTful backend API                             |
+| **Database**       | [PostgreSQL](https://www.postgresql.org/)                     | Relational database                             |
+| **ORM**            | [Prisma](https://www.prisma.io/)                              | Database ORM for schema modeling and migrations |
+| **Authentication** | [NextAuth.js](https://next-auth.js.org/)                      | Handles Google and Credentials login            |
+| **Type Checking**  | [TypeScript](https://www.typescriptlang.org/)                 | Strong typing for safety and scalability        |
+| **Styling**        | [Tailwind CSS](https://tailwindcss.com/)                      | Utility-first modern CSS framework              |
+| **Deployment**     | [Vercel](https://vercel.com/) / [Render](https://render.com/) | Deployment for frontend and backend             |
+
+📁 Project Structure
+
+
+├── prisma/
+│   ├── schema.prisma        # Prisma schema definition
+├── src/
+│   ├── app/
+│   │   ├── api/
+│   │   │   └── auth/[...nextauth]/route.ts # NextAuth configuration
+│   │   ├── dashboard/       # Protected dashboard pages
+│   │   ├── login/           # Login page for credentials/google
+│   │   └── blog/            # Blog listing and details
+│   ├── components/          # UI components
+│   ├── lib/                 # Prisma client setup
+│   ├── actions/             # Server actions (CRUD)
+│   └── middleware.ts        # Auth middleware (NextAuth)
+├── .env                     # Environment variables
+├── package.json
+└── README.md
+
+🧩 API Endpoints (Backend - Express)
+
+| Method     | Endpoint                | Description            |
+| ---------- | ----------------------- | ---------------------- |
+| **POST**   | `/api/v1/auth/login`    | Login with credentials |
+| **POST**   | `/api/v1/auth/register` | Register new user      |
+| **GET**    | `/api/v1/posts`         | Get all posts          |
+| **POST**   | `/api/v1/posts`         | Create a new post      |
+| **GET**    | `/api/v1/posts/:id`     | Get a single post      |
+| **PUT**    | `/api/v1/posts/:id`     | Update a post          |
+| **DELETE** | `/api/v1/posts/:id`     | Delete a post          |
+
+
+
+🧱 Prisma Schema Example
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String?
+  email     String?  @unique
+  image     String?
+  posts     Post[]
+}
+
+model Post {
+  id          Int      @id @default(autoincrement())
+  slug        String   @unique
+  title       String
+  description String
+  content     String
+  thumbnail   String?
+  published   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  authorId    Int
+  author      User     @relation(fields: [authorId], references: [id])
+}
+
+ Install Dependencies
+
+npm install
+# or
+yarn install
+
+ Run the Development Server
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+🔍 Key Features
 
-## Learn More
+✅ Google OAuth & Email Login
+✅ Prisma ORM with PostgreSQL
+✅ TypeScript Safety
+✅ Protected Dashboard using Middleware
+✅ Dynamic Blog Creation via API
+✅ Modern Tailwind UI
+✅ Environment Secure Config
+✅ NextAuth Callbacks for Session Management
 
-To learn more about Next.js, take a look at the following resources:
+🧩 Future Improvements
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+ Add blog search & category filters
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+ Integrate comments system
 
-## Deploy on Vercel
+ Add admin dashboard with role-based access
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+ Deploy backend on Render & frontend on Vercel
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+ Implement dark/light theme

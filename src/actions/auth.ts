@@ -19,3 +19,19 @@ export const register = async (data: FieldValues) => {
   return await res.json();
 
 }
+export const login = async (data: FieldValues) => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/auth/login`, {
+    method: "POST",
+    headers: {
+    "Content-Type": "Application/json",
+    },
+  body:  JSON.stringify(data)
+  })
+
+  if (!res?.ok) {
+  console.error("User Registion Failed", await res.text())
+  };
+  
+  return await res.json();
+
+}
