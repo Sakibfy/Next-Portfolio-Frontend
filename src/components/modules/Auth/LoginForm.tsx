@@ -33,10 +33,7 @@ export default function LoginForm() {
     console.log("Login submitted:", values);
   };
 
-  const handleSocialLogin = (provider: "google" | "github") => {
-    console.log(`Login with ${provider}`);
-    
-  };
+  
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-50">

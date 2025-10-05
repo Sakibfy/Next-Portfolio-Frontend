@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
@@ -14,25 +14,35 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
-type RegisterFormValues = {
-  name: string;
-  email: string;
-  phone: string;
-  password: string;
-};
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { register } from "@/actions/auth";
+
+
+
+
 
 export default function RegisterForm() {
-  const form = useForm<RegisterFormValues>({
+  const form = useForm<FieldValues>({
     defaultValues: {
       name: "",
       email: "",
-      phone: "",
       password: "",
     },
   });
 
-  const onSubmit = (values: RegisterFormValues) => {
-    console.log("Form submitted:", values);
+   const router = useRouter()
+
+   const onSubmit = async (values: FieldValues) => {
+    try {
+      const res = await register(values)
+      if (res?.id) {
+        toast.success("User Registered Successfully");
+        router.push("/login");
+      }
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
@@ -96,7 +106,7 @@ export default function RegisterForm() {
             )}
           />
 
-          <Button type="submit" className="w-full mt-2">
+          <Button type="submit" className="w-full mt-2 cursor-pointer">
             Register
           </Button>
 

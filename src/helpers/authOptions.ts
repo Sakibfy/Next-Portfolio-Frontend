@@ -1,5 +1,6 @@
 import GoogleProvider from "next-auth/providers/google";
 
+
 export const authOptions = {
   
   providers: [
@@ -8,6 +9,10 @@ export const authOptions = {
     clientSecret: process.env.GOOGLE_CLIENT_SECRET as string
   })
   ],
-  secret: process.env.NEXT_AUTH_SECRET
+  secret: process.env.AUTH_SECRET,
+
+  pages: {
+    signIn: "/login"
+  }
 };
 
